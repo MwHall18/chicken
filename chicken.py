@@ -29,8 +29,8 @@ def read_uart_distance():
     
     if ser.in_waiting >= 9:
         data = ser.read(9)
-        if data[0] == 0x59 and data[1] == 0x59:
-            distance = data[2] + data[3] * 256
+        if data[0] == 0x59 and data[1] == 0x59: # Bit range for UART lidar data
+            distance = data[2] + data[3] * 256 # calculations to put to cm
             ser.close()  # Close the connection after reading
             return distance / 100.0  # convert to meters
     ser.close()  # Ensure the connection is closed if no valid data
@@ -73,4 +73,4 @@ try:
 except KeyboardInterrupt:
     print("Exiting.")
     GPIO.output(LED_PIN, GPIO.LOW)
-    os.system("taskkill /IM wmplayer.exe /F")  # Ensure audio stops
+    os.kill(process.pid, 9)  # Ensure audio stops
