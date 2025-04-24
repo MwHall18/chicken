@@ -74,3 +74,9 @@ except KeyboardInterrupt:
     print("Exiting.")
     GPIO.output(LED_PIN, GPIO.LOW)
     os.kill(process.pid, 9)  # Ensure audio stops
+
+# extra insurance
+finally:
+    print("Exiting.")
+    GPIO.output(LED_PIN, GPIO.LOW)
+    os.kill(process.pid, 9)  # Ensure audio stops
