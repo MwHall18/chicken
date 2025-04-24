@@ -6,21 +6,23 @@ import subprocess
 import signal
 from multiprocessing import Process
 
-# === GPIO SETUP ===
-LED_PIN = 23  # GPIO 17 (physical pin 11)
+# Setup LED
+LED_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_PIN, GPIO.OUT)
 GPIO.output(LED_PIN, GPIO.LOW)
 
-# === AUDIO SETUP ===
+# Import the audio file
 AUDIO_FILE = "bearscare.wav"
 audio_playing = False
 
-# === INIT ===
+# Distance determanants
 last_distance = None
 THRESHOLD_DIFF = 0.5  # meters
 
 def read_uart_distance():
+    """ Read distance from UART-connected lidar """
+
     # Reinitialize the UART connection
     ser = serial.Serial('/dev/serial0', 115200, timeout=1)
     time.sleep(0.1)  # Allow time for the connection to stabilize
@@ -43,9 +45,9 @@ try:
                 if last_distance is None:
                     print(f"Initial Distance: {distance:.2f} m")
                 elif distance <= 2:
-                    print(f"⚠️ WARNING: Object within 2m! ({distance:.2f} m)")
+                    print(f"WARNING: Object within 2m! ({distance:.2f} m)")
                 elif distance <= 4:
-                    print(f"⚠️ Notice: Object within 4m ({distance:.2f} m)")
+                    print(f"Notice: Object within 4m ({distance:.2f} m)")
                 else:
                     print(f"Distance: {distance:.2f} m")
                 last_distance = distance  # Update the last distance
