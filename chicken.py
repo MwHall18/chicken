@@ -44,10 +44,10 @@ try:
             if last_distance is None or abs(distance - last_distance) >= THRESHOLD_DIFF:
                 if last_distance is None:
                     print(f"Initial Distance: {distance:.2f} m")
-                elif distance <= 2:
-                    print(f"WARNING: Object within 2m! ({distance:.2f} m)")
-                elif distance <= 4:
-                    print(f"Notice: Object within 4m ({distance:.2f} m)")
+                elif distance <= 1: # printing 1 for debugging purposes - 4,3,2 detect through other means
+                    print(f"WARNING: Object within 1m! ({distance:.2f} m)")
+                elif distance <= 5: # printing 5 for debugging purposes - 4,3,2 detect through other means
+                    print(f"Notice: Object within 5m ({distance:.2f} m)")
                 else:
                     print(f"Distance: {distance:.2f} m")
                 last_distance = distance  # Update the last distance
