@@ -12,6 +12,12 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_PIN, GPIO.OUT)
 GPIO.output(LED_PIN, GPIO.LOW)
 
+# Setup relay
+RELAY_PIN = 17
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(RELAY_PIN, GPIO.OUT)
+GPIO.output(RELAY_PIN, GPIO.HIGH) # Make sure relay starts off
+
 # Import the audio file
 AUDIO_FILE = "bearscare.wav"
 audio_playing = False
@@ -67,6 +73,12 @@ try:
                 if audio_playing:
                     os.kill(process.pid, 9)
                     audio_playing = False
+
+            if distance <= 2:
+                GPIO.output(RELAY_PIN, GPIO.LOW)
+                print("Pump on")
+            else:
+                GPIO.output(RELAY_PIN, GPIO.HIGH)
 
         time.sleep(0.2)
 
