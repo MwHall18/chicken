@@ -46,7 +46,7 @@ try:
     while True:
         distance = read_uart_distance()
         if distance is not None:
-            # Print the initial reading or if the change exceeds the threshold
+            # Print the initial reading or if the change exceeds the threshold - Debugging purposes
             if last_distance is None or abs(distance - last_distance) >= THRESHOLD_DIFF:
                 if last_distance is None:
                     print(f"Initial Distance: {distance:.2f} m")
