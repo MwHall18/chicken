@@ -86,4 +86,5 @@ try:
 except KeyboardInterrupt:
     print("Exiting.")
     GPIO.output(LED_PIN, GPIO.LOW)
+    GPIO.output(RELAY_PIN, GPIO.LOW)
     os.kill(process.pid, 9)  # Ensure audio stops
