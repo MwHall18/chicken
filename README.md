@@ -2,7 +2,7 @@
 
 This system is designed to detect the distance of nearby objects using a UART-connected lidar sensor and respond with visual, auditory, and mechanical outputs. It runs on a Raspberry Pi and uses GPIO control for a warning LED, a sound alert, and a pump relay.
 
-## 📊 System Overview
+## System Overview
 
 - **Sensor Input**: UART lidar distance sensor.
 - **Outputs**:
@@ -10,7 +10,7 @@ This system is designed to detect the distance of nearby objects using a UART-co
   - Audio alert (bear growl) when within 3 meters.
   - Pump relay turns on when within 2 meters.
 
-## 🧩 Component Diagram
+## Component Diagram
 
 ```plaintext
 +------------------+       +---------------------+
